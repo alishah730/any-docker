@@ -58,7 +58,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: alishah730@gmail.com
-          password: ${{ secrets.JFROG_PASSWORD }}
+          password: ${{ secrets.JFROG_PAT }}
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
