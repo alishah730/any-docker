@@ -1,12 +1,14 @@
 name: Docker
 
 on:
-  schedule:
-    - cron: '29 16 * * *'
   push:
-    branches: [ main ]
-    # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
+    # Publish `master` as Docker `latest` image.
+    branches:
+      - main
+
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
 
   # Run tests for any PRs.
   pull_request:
@@ -80,7 +82,7 @@ jobs:
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
-      - name: Push image to Jfrog Container Registry
+      - name: Push image to GitHub Container Registry
         run: |
           IMAGE_ID=alixray.jfrog.io/docker/$IMAGE_NAME
           # Change all uppercase to lowercase
